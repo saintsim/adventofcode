@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day08.part1 import parse, run_program
+from part1 import parse, run_program
 from copy import deepcopy
 
 

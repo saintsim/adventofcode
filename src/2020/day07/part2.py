@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day07.part1 import parse, BAGS
+from part1 import parse, BAGS
 
 RESULT = 0
 

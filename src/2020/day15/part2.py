@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day15.part1 import number_spoken
+from part1 import number_spoken
 
 
 if __name__ == '__main__':

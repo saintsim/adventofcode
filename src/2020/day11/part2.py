@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day11.part1 import occupied_count, print_map, EMPTY, OCCUPIED, FLOOR
+from part1 import occupied_count, print_map, EMPTY, OCCUPIED, FLOOR
 
 END = '|'
 

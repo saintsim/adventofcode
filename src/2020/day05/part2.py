@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day05.part1 import get_seat_id
+from part1 import get_seat_id
 
 
 def get_highest_seat_id(lines):

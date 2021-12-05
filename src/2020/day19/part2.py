@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day19.part1 import rule_checker
+from part1 import rule_checker
 
 if __name__ == '__main__':
     with open('input2', 'r') as file:

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day16.part1 import parse
+from part1 import parse
 
 
 def find_ticket_fields(lines):

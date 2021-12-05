@@ -17,7 +17,7 @@ def flip_bit(bit):
 
 def get_rating(lines, is_co2):
     entries = lines
-    for i in xrange(len(lines[0])):
+    for i in range(len(lines[0])):
         col = []
         for row in entries:
             col.append(int(row[i]))

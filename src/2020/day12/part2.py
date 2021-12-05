@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day12.part1 import manhattan
+from part1 import manhattan
 
 
 def navigation(lines):

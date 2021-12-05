@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day03.part1 import init_maze, traverse_maze
+from part1 import init_maze, traverse_maze
 
 
 def maze_trees(lines):

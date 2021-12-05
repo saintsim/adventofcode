@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from src.day24.part1 import parse, run, count_black, TILES, next_tile, Tile
+from part1 import parse, run, count_black, TILES, next_tile, Tile
 
 
 def lobby2(lines):

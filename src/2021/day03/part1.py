@@ -5,7 +5,7 @@ import collections
 
 def find_solution(lines):
     bit_array = []
-    for i in xrange(len(lines[0])):
+    for i in range(len(lines[0])):
         bit_array.append([])
     for line in lines:
         for i, cell in enumerate(line):
