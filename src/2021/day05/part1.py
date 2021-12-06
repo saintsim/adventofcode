@@ -18,7 +18,7 @@ def parse(input):
 def get_line_cells(line, include_diags):
     if not include_diags:
         if line[0][0] != line[1][0] and line[0][1] != line[1][1]:
-            print 'skip: ' + str(line)
+            print('skip: ' + str(line))
             return []
     line_cells = set(line)
     # increase or decrease y, keep x constant
@@ -66,7 +66,7 @@ def draw_grid(x_size, y_size, lines, include_diags):
     big_dimension = max(x_size, y_size)+1
     grid = [[0]*big_dimension for _ in range(big_dimension)]
     for line in lines:
-        print str(line)
+        print(str(line))
         grid = add_line_to_grid(grid, line, include_diags)
     return number_of_overlaps(grid)
 
