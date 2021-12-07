@@ -6,7 +6,7 @@ from collections import Counter
 def calc_fuel_cost(from_amount, to_amount):
     smallest = min(from_amount, to_amount)
     largest = max(from_amount, to_amount)
-    return sum(range(0, (largest+1)-smallest))
+    return sum(range((largest+1)-smallest))
 
 
 def solve_fuel_amount(input):
