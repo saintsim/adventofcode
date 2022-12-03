@@ -8,7 +8,8 @@ def score(item):
 def rucksacks(input):
     total = 0
     for line in input:
-        in_both = set(line[:len(line)//2]).intersection(set(line[len(line)//2:]))
+        mid = len(line)//2
+        in_both = set(line[:mid]) & set(line[mid:])
         total += score(next(iter(in_both)))
     return total
 
