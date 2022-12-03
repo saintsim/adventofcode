@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 
 
+def score(item):
+    return (ord(item)-ord('a')) + 1 if (item == item.lower()) else (ord(item) - ord('A')) + 27
+
+
 def rucksacks(input):
     total = 0
     for line in input:
-        section1 = set(line[:len(line)//2])
-        section2 = set(line[len(line)//2:])
-        in_both = section1.intersection(section2)
-        for item in in_both:
-            if item == item.lower():
-                total += (ord(item)-ord('a'))+1
-            else:
-                total += (ord(item) - ord('A')) + 27
+        in_both = set(line[:len(line)//2]).intersection(set(line[len(line)//2:]))
+        total += score(next(iter(in_both)))
     return total
 
 
