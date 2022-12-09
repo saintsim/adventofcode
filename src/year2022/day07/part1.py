@@ -2,8 +2,7 @@
 
 FILE_SYSTEM = []
 DIRECTORY_PTRS = dict()
-previous_dir = None
-current_dir = None
+CURRENT_DIR_PATH = ""
 
 
 class File:
@@ -32,45 +31,46 @@ class Directory:
         if dir not in self.child_dirs:
             self.child_dirs.append(dir)
 
-    def calc_size(self, empty, depth):
-        if empty:
-            if not self.child_dirs:
-                self.dir_size = self.file_sizes
-            return self.dir_size
+    def calc_size(self):
         if self.dir_size is None:
             dir_size = 0
             for child_dir in self.child_dirs:
-                if depth > 2000:
-                    return None
                 # print(self.dir_name, ' -> ', child_dir)
-                child_size = DIRECTORY_PTRS.get(child_dir).calc_size(empty, depth + 1)
-                if child_size is None:
-                    return None
-                else:
-                    dir_size += child_size
+                try:
+                    child_size = DIRECTORY_PTRS.get(child_dir).calc_size()
+                except:
+                    pass
+                dir_size += child_size
             self.dir_size = self.file_sizes + dir_size
         return self.dir_size
 
 
 def change_directory(dir):
-    global current_dir, previous_dir
+    global CURRENT_DIR_PATH
     if dir == '..':
-        current_dir = previous_dir
+        CURRENT_DIR_PATH = "/".join(CURRENT_DIR_PATH.split('/')[:-1])
     else:
-        dir_ptr = get_dir_ptr(dir)
-        if dir not in DIRECTORY_PTRS:
-            DIRECTORY_PTRS[dir] = dir_ptr
-        previous_dir = current_dir
-        current_dir = dir
+        if dir == '/':
+            CURRENT_DIR_PATH = '/'
+        else:
+            CURRENT_DIR_PATH += (('/' if CURRENT_DIR_PATH != '/' else "") + dir)
+        get_dir_ptr(CURRENT_DIR_PATH)
 
 
 def get_dir_ptr(dir):
     if dir not in DIRECTORY_PTRS:
-        ptr = Directory(dir, current_dir)
+        ptr = Directory(dir, CURRENT_DIR_PATH)
         DIRECTORY_PTRS[dir] = ptr
     else:
         ptr = DIRECTORY_PTRS.get(dir)
     return ptr
+
+
+def get_path(sub_dir):
+    if CURRENT_DIR_PATH == '/':
+        return '/' + sub_dir
+    else:
+        return CURRENT_DIR_PATH + '/' + sub_dir
 
 
 def list_files(files):
@@ -78,11 +78,12 @@ def list_files(files):
         file_tokens = file.split()
         if file_tokens[0] == 'dir':
             dir_name = file_tokens[1]
-            get_dir_ptr(dir_name)
-            DIRECTORY_PTRS.get(current_dir).add_child_dir(dir_name)
+            get_dir_ptr(CURRENT_DIR_PATH)
+            get_dir_ptr(get_path(dir_name))
+            DIRECTORY_PTRS.get(CURRENT_DIR_PATH).add_child_dir(get_path(dir_name))
         else:
             file = File(file_tokens[1], int(file_tokens[0]))
-            DIRECTORY_PTRS.get(current_dir).add_file(file)
+            DIRECTORY_PTRS.get(CURRENT_DIR_PATH).add_file(file)
 
 
 def command_processor(line):
@@ -95,36 +96,20 @@ def command_processor(line):
 def total():
     sum_threshold = 100000
     total_size = 0
-    # for dir_name, dir_ptr in DIRECTORY_PTRS.items():
-    #     if dir_name == 'scarps':
-    #         continue
-    #     dir_ptr.calc_size(True)
-
-    while DIRECTORY_PTRS.get('/').dir_size is None:
-        for dir_name, dir_ptr in DIRECTORY_PTRS.items():
-            if dir_ptr.dir_size is None:
-                DIRECTORY_PTRS.get(dir_name).dir_size = dir_ptr.calc_size(False, 0)
-        count = 0
-        for dir_name, dir_ptr in DIRECTORY_PTRS.items():
-            count += dir_ptr.dir_size is None
-        print('foo...: ', count, "/", len(DIRECTORY_PTRS))
-
-    return 0
-    #     if dir_size <= sum_threshold:
-    #         total_size += dir_size
-    # return total_size
+    for dir_name, dir_ptr in DIRECTORY_PTRS.items():
+        dir_size = dir_ptr.calc_size()
+        if dir_size <= sum_threshold:
+            print('-->', dir_name, dir_size)
+            total_size += dir_size
+    return total_size
 
 
 def linux(file_str):
     commands = file_str.split('$')
-    global current_dir
-    current_dir = 'scarps'
-    DIRECTORY_PTRS[current_dir] = Directory('None', None)
     for line in commands:
         if line == "":
             continue
         command_processor(line.strip())
-
     return total()
 
 
