@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-FILE_SYSTEM = []
 DIRECTORY_PTRS = dict()
 CURRENT_DIR_PATH = ""
 
@@ -36,10 +35,7 @@ class Directory:
             dir_size = 0
             for child_dir in self.child_dirs:
                 # print(self.dir_name, ' -> ', child_dir)
-                try:
-                    child_size = DIRECTORY_PTRS.get(child_dir).calc_size()
-                except:
-                    pass
+                child_size = DIRECTORY_PTRS.get(child_dir).calc_size()
                 dir_size += child_size
             self.dir_size = self.file_sizes + dir_size
         return self.dir_size
