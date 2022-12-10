@@ -1,35 +1,21 @@
 #!/usr/bin/env python3
 
 signal_strengths = []
-original_sprite = '........................................'
-sprite = list('###.....................................')
 crt = []
 current_line = []
 
 
 def cycle_update(i, register_x):
-    global sprite, current_line
+    global current_line
     print(i + 1, register_x, (i + 1) * register_x)
     signal_strengths.append((i + 1) * register_x)
-    reset_sprite(register_x)
     if len(current_line) == 40:
         crt.append(current_line)
         current_line = []
-    current_line.append('#' if sprite[i % 40] == '#' else '.')
+    current_line.append('#' if i % 40 in (register_x-1, register_x, register_x+1) else '.')
     for line in crt:
         print(''.join(line))
     print(''.join(current_line))
-
-
-def reset_sprite(register_x):
-    global sprite, original_sprite
-    sprite = list(original_sprite)
-    if int(register_x)-1 >= 0:
-        sprite[int(register_x) - 1] = '#'
-    if int(register_x) < len(sprite):
-        sprite[int(register_x)] = '#'
-    if int(register_x)+1 < len(sprite):
-        sprite[int(register_x) + 1] = '#'
 
 
 def clock_circuit(input):
