@@ -32,6 +32,7 @@
     line.split(',')
     line.splitlines()  # split on line breaks
     ','.join(['bob','fred']) # create comma seperated list of items
+    eval('6 * 5') # use eval to evaluate a formula in a string
 
 [W3 string functions doc](https://www.w3schools.com/python/python_ref_string.asp)
 
@@ -114,6 +115,7 @@ Compares the values
     a.append('foo')
     a.remove('foo')
     a.pop()  # removes the last item, if the element if supplies (e.g. pop(1))
+    a.pop(0) # to remove the first item in the last, instead of last
     a.clear()
 
     a.sort()
