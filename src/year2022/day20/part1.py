@@ -81,7 +81,6 @@ def grove(input, mix_times, decryption_key):
                 NODES[get_node_ptr(node_to_move_new_prev)].next_ptr = i
                 NODES[get_node_ptr(node_to_move.next_ptr)].prev_ptr = i
             elif node_to_move.val > 0:
-                # TODO: clean up the below, thar dupes the backwards in parts
                 # forwards
                 node_to_move_new_next = node_to_move.next_ptr
                 for move_back_idx in range(abs(node_to_move.val) % (NODES_SIZE-1)):
