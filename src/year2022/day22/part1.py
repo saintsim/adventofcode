@@ -62,7 +62,7 @@ def follow_directions(directions, first_pos):
                 if next_pos in BOARD:
                     if BOARD[next_pos] == '#':
                         # cannot move, exit
-                        continue
+                        break
                     else:
                         current_pos = next_pos
                 else:

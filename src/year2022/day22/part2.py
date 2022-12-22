@@ -60,7 +60,6 @@ def wrap_around(current_pos, next_pos, direction_ix):
                 wrap = current_pos[0]-100, 199  # -100
                 wrap_direction_ix = 3  # up
     else:
-        # wrap up or down
         if next_pos[0] > current_pos[0]:
             # trying to move right
             if group == 2:
@@ -118,7 +117,7 @@ def follow_directions(directions, first_pos):
                 if next_pos in BOARD:
                     if BOARD[next_pos] == '#':
                         # cannot move, exit
-                        continue
+                        break
                     else:
                         current_pos = next_pos
                 else:
