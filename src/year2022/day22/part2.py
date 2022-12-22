@@ -64,7 +64,7 @@ def wrap_around(current_pos, next_pos, direction_ix):
             # trying to move right
             if group == 2:
                 # to 5 bottom
-                wrap = 99, current_pos[0]
+                wrap = 99, 149-current_pos[1]
                 wrap_direction_ix = 2  # left
             elif group == 3:
                 # to 2 up
@@ -72,7 +72,7 @@ def wrap_around(current_pos, next_pos, direction_ix):
                 wrap_direction_ix = 3  # up
             elif group == 5:
                 # to 2 left
-                wrap = 149, current_pos[1]-100  # -100
+                wrap = 149, 149-current_pos[1]
                 wrap_direction_ix = 2  # left
             else:  # 6
                 # to 5 up
@@ -82,7 +82,7 @@ def wrap_around(current_pos, next_pos, direction_ix):
             # trying to move left
             if group == 1:
                 # to 4 right
-                wrap = 0, current_pos[1]+100
+                wrap = 0, 149-current_pos[1]
                 wrap_direction_ix = 0  # right
             elif group == 3:
                 # to 4 down
@@ -90,7 +90,7 @@ def wrap_around(current_pos, next_pos, direction_ix):
                 wrap_direction_ix = 1  # down
             elif group == 4:
                 # to 1 right
-                wrap = 50, current_pos[1]-100
+                wrap = 50, 149-current_pos[1]
                 wrap_direction_ix = 0  # right
             else:  # 6
                 # to 1 down
