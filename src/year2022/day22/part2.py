@@ -98,9 +98,9 @@ def wrap_around(current_pos, next_pos, direction_ix):
                 wrap = current_pos[1]-100, 0  # -150, +50
                 wrap_direction_ix = 1  # down
     if BOARD[wrap] == '#':
-        return current_pos, wrap_direction_ix
+        return current_pos, direction_ix
     else:
-        return wrap, direction_ix
+        return wrap, wrap_direction_ix
 
 
 def add_tuples(t1, t2):
