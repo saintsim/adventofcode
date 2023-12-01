@@ -33,6 +33,8 @@
     line.splitlines()  # split on line breaks
     ','.join(['bob','fred']) # create comma seperated list of items
     eval('6 * 5') # use eval to evaluate a formula in a string
+    name.find('bob') # returns index of first match, -1 if no match
+    name.rfind('bob') # same ss find but for last match
 
 [W3 string functions doc](https://www.w3schools.com/python/python_ref_string.asp)
 
@@ -40,6 +42,7 @@
 
     int(age)
     age.isNumeric()
+    age.isdigit()
     float(weight)
 
     age, weight = 10, 50
