@@ -19,15 +19,13 @@ def part2(lines):
                     green_count = int(num)
                 else:
                     red_count = int(num)
-            if blue_count > max_blue:
-                max_blue = blue_count
-            if red_count > max_red:
-                max_red = red_count
-            if green_count > max_green:
-                max_green = green_count
+            max_blue = max(max_blue, blue_count)
+            max_red = max(max_red, red_count)
+            max_green = max(max_green, green_count)
         total_per_set.append(max_green * max_red * max_blue)
 
     return sum(total_per_set)
+
 
 if __name__ == '__main__':
     with open('input', 'r') as file:
