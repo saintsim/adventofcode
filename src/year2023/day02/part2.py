@@ -7,13 +7,9 @@ def part2(lines):
         game, cubes = line.split(':')
         game_num = int(game.replace("Game ", ""))
         sub_games = cubes.split('; ')
-        max_blue = 0
-        max_red = 0
-        max_green = 0
+        max_blue, max_red, max_green = 0, 0, 0
         for sub_game in sub_games:
-            blue_count = 0
-            red_count = 0
-            green_count = 0
+            blue_count, red_count, green_count = 0, 0, 0
             cube_colours = sub_game.split(', ')
             for cube_colour in cube_colours:
                 num, _ = cube_colour.strip().split(' ')
