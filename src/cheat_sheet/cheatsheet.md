@@ -3,6 +3,7 @@
     a = 'foo'
     a, b = 'foo', 'bob'
     a, b = ['foo', 'bar']
+    a, _ = ['foo', 'bar']  # _ when you don't care about that argument
 
     # globals - declare them outside a function, if constant convention is to use upper case
     # if declared within function then need global keyword
