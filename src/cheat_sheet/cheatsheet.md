@@ -86,6 +86,7 @@
     re.match()    # match object (but only at BEGINNING of the string)
     re.fullmatch() # match object (matches the WHOLE string)
     re.search()   # match object (anywhere in the string)
+    re.finditer() # to iterate over matches
     re.split()    # split and return as list
     re.sub()      # RegEx find and replace
 
@@ -192,6 +193,15 @@ Compares the values
 
     min(a)
     max(a)
+    sum(a)
+    all(a)  # true if they are all True, else False (False means a 0 or a False in the list)
+
+    a = [int(i) for i in a]  # convert all items in a list to ints
+
+    # map
+    a = list(map(int, a))    # map() way of doing the same
+    bob_age, mary_age = map(int, ['5', '10'])
+    simon, bob = map(str.strip, ['simon ', 'bob ']) # string strip white space around the objects
     
     list3 = ['a'] + ['b']
 
@@ -256,6 +266,7 @@ Pythons map
 
     d = { 'name': 'bob', 'age': 2 }
     d['name']
+    d.get('name', 'default name') # allows you to specify a default if the key does not exist
     d.keys()
     d.values()
     d['age'] = 3  # used for updating and adding new elements
@@ -311,6 +322,15 @@ If you need to change them, you would need to convert them in a list
 
     import random
     random.randrange(1,10)   # returns a number between 1 and 9 (so no 10)
+
+    from collections import defaultDict  
+    authors = defaultdict(list)   # set to default to empty list
+    authors['king'] = ['book1']
+    authors['simon']  # key doesn't exist so with defaultdict it would return empty list ([])
+
+    from collections import deque       # for efficient append(), appendleft(), pop() and popleft()
+    from collections import OrderedDict
+    from collections import UserString
 
 # Classes
 
