@@ -4,7 +4,8 @@
 class Node:
 
     def __init__(self, next_coord, next_direction):
-        self.visited = set(next_coord)
+        self.visited = set()
+        self.visited.add(next_coord)
         self.next_coord = next_coord
         self.next_direction = next_direction
         self.done = False
@@ -90,7 +91,7 @@ def find_longest_path(maze, start_coord):
             if node.done:
                 all_done[idx] = True
     res = max([len(g.visited) for g in GRAPH])
-    return (res-1)//2
+    return res//2
 
 
 def part1(input):
