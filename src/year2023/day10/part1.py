@@ -4,11 +4,10 @@
 class Node:
 
     def __init__(self, next_coord, next_direction):
-        self.visited = set()
+        self.visited = set(next_coord)
         self.next_coord = next_coord
         self.next_direction = next_direction
         self.done = False
-
 
 
 DIR = {
@@ -23,7 +22,6 @@ DIR = {
 }
 
 GRAPH = []
-ALL_VISITED = set()
 
 
 def parse(input):
@@ -44,11 +42,6 @@ def get_cell_value(maze, coord):
 
 def navigate_path(maze, node):
     next_coord = (node.next_coord[0] + node.next_direction[0], node.next_coord[1] + node.next_direction[1])
-    if next_coord in ALL_VISITED:
-        node.done = True
-        return node
-    else:
-        ALL_VISITED.add(next_coord)
     if next_coord in node.visited:
         node.done = True
         return node
@@ -96,7 +89,8 @@ def find_longest_path(maze, start_coord):
             navigate_path(maze, node)
             if node.done:
                 all_done[idx] = True
-    return max([len(g.visited) for g in GRAPH])
+    res = max([len(g.visited) for g in GRAPH])
+    return (res-1)//2
 
 
 def part1(input):
