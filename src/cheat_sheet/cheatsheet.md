@@ -321,6 +321,12 @@ If you need to change them, you would need to convert them in a list
 
     zip(['bob','dave'],[10, 15]) # = [('bob',10), ('dave',15)]  like tuples of inputs
 
+    world = [
+        ['-','-','-','-'],
+        ['-','#','-','-']
+    ]
+    empty_cols = [c for c, col in enumerate(zip(*world)) if '#' not in col] # use zip to explore the 2d array as cols
+
     import random
     random.randrange(1,10)   # returns a number between 1 and 9 (so no 10)
 
