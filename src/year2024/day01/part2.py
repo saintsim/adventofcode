@@ -15,7 +15,7 @@ def part2(input):
     i = 0
     total = 0
     right_counter = Counter(list2)
-    for j in list1:
+    for _ in list1:
         total += (list1[i] * right_counter[list1[i]])
         i = i+1
     return total

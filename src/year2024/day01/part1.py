@@ -11,7 +11,7 @@ def part1(input):
     list2.sort()
     i = 0
     total = 0
-    for j in list1:
+    for _ in list1:
         total = total + abs(list1[i]-list2[i])
         i = i+1
     return total
