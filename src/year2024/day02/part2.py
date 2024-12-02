@@ -11,13 +11,11 @@ def safe_check(tokens, check_count):
             if tokens[idx+1] > tokens[idx]:
                 diff = tokens[idx+1] - tokens[idx]
                 if diff < 1 or diff > 3:
-                    # here
                     if check_count > 0:
                         return safe_check(tokens[:idx] + tokens[idx+1:], 0)
                     else:
                         return UNSAFE
             else:
-                # safe
                 if check_count > 0:
                     return safe_check(tokens[:idx] + tokens[idx + 1:], 0)
                 else:
@@ -29,7 +27,6 @@ def safe_check(tokens, check_count):
             if tokens[idx] > tokens[idx+1]:
                 diff = tokens[idx] - tokens[idx+1]
                 if diff < 1 or diff > 3:
-                    # safe
                     if check_count > 0:
                         return safe_check(tokens[:idx] + tokens[idx+1:], 0)
                     else:
