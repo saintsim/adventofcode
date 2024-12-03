@@ -8,6 +8,8 @@ def safe_check(tokens, check_count):
     if tokens[1] > tokens[0]:
         # increasing
         for idx, line in enumerate(range(len(tokens) - 1)):
+            if check_count == 1 and idx == len(tokens)-2:
+                return SAFE
             if tokens[idx+1] > tokens[idx]:
                 diff = tokens[idx+1] - tokens[idx]
                 if diff < 1 or diff > 3:
@@ -24,6 +26,8 @@ def safe_check(tokens, check_count):
     else:
         # decreasing
         for idx, line in enumerate(range(len(tokens)-1)):
+            if check_count == 1 and idx == len(tokens)-2:
+                return SAFE
             if tokens[idx] > tokens[idx+1]:
                 diff = tokens[idx] - tokens[idx+1]
                 if diff < 1 or diff > 3:
