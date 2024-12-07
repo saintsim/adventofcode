@@ -203,6 +203,9 @@ Compares the values
     a = list(map(int, a))    # map() way of doing the same
     bob_age, mary_age = map(int, ['5', '10'])
     simon, bob = map(str.strip, ['simon ', 'bob ']) # string strip white space around the objects
+
+    # convert line of tokens into a list of ints
+    input = [int(x) for x in line.split()]
     
     list3 = ['a'] + ['b']
 
