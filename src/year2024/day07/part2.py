@@ -2,21 +2,19 @@
 
 def calc_part2(total, inputs, expected_total, ops):
     if len(inputs) > 1:
-        plus_total = total + inputs[1]
-        if plus_total <= expected_total:
-            plus_total = calc_part2(plus_total, inputs[1:], expected_total, ops+['+'])
-            if plus_total == expected_total:
-                return plus_total
-        concat_total = int(str(total)+str(inputs[1]))
-        if concat_total <= expected_total:
-            concat_total = calc_part2(concat_total, inputs[1:], expected_total, ops+['||'])
-            if concat_total == expected_total:
-                return concat_total
-        multi_total = total * inputs[1]
-        if multi_total <= expected_total:
-            multi_total = calc_part2(multi_total, inputs[1:], expected_total, ops+['*'])
-            if multi_total == expected_total:
-                return multi_total
+        for op in ['+', '*', '||']:
+            op_total = 0
+            match op:
+                case '+':
+                    op_total = total + inputs[1]
+                case '||':
+                    op_total = int(str(total)+str(inputs[1]))
+                case '*':
+                    op_total = total * inputs[1]
+            if op_total <= expected_total:
+                op_total = calc_part2(op_total, inputs[1:], expected_total, ops+[op])
+                if op_total == expected_total:
+                    return op_total
     else:
         if total == expected_total:
             return expected_total
