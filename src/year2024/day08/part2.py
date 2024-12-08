@@ -45,9 +45,9 @@ def find_antinodes(by_type):
                         antinode_2_added = True
                     else:
                         break
-                if antinode_1_added or antinode_2_added:
-                    nodes.add(val_1)
-                    nodes.add(val_2)
+                # add the antennas
+                nodes.add(val_1)
+                nodes.add(val_2)
     print(nodes)
     return len(nodes)
 
