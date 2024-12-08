@@ -29,20 +29,16 @@ def find_antinodes(by_type):
                 x_diff = val_2[1] - val_1[1]
                 antinode_1 = val_1
                 antinode_2 = val_2
-                antinode_1_added = False
-                antinode_2_added = False
                 while True:
                     antinode_1 = (antinode_1[0] - y_diff, antinode_1[1] - x_diff)
                     if is_on_grid(antinode_1):
                         nodes.add(antinode_1)
-                        antinode_1_added = True
                     else:
                         break
                 while True:
                     antinode_2 = (antinode_2[0] + y_diff, antinode_2[1] + x_diff)
                     if is_on_grid(antinode_2):
                         nodes.add(antinode_2)
-                        antinode_2_added = True
                     else:
                         break
                 # add the antennas
