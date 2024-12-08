@@ -9,10 +9,10 @@ def parse(input):
 
 
 def is_on_grid(node):
-    if node[0] < 0 or node[0] > len(MATRIX)-1:
+    if node[0] < 0 or node[0] > len(MATRIX) - 1:
         print('skip: ' + str(node))
         return False
-    if node[1] < 0 or node[1] > len(MATRIX[0])-1:
+    if node[1] < 0 or node[1] > len(MATRIX[0]) - 1:
         print('skip: ' + str(node))
         return False
     return True
@@ -21,29 +21,21 @@ def is_on_grid(node):
 def find_antinodes(by_type):
     nodes = set()
     for key, vals in by_type.items():
-        for idx_1, val_1 in enumerate(vals):
-            for idx_2, val_2 in enumerate(vals):
+        for idx_1, ant1 in enumerate(vals):
+            for idx_2, ant2 in enumerate(vals):
                 if idx_1 == idx_2:
                     continue
-                y_diff = val_2[0] - val_1[0]
-                x_diff = val_2[1] - val_1[1]
-                antinode_1 = val_1
-                antinode_2 = val_2
+                y_diff = ant2[0] - ant1[0]
+                x_diff = ant2[1] - ant1[1]
+                antinode = ant1
                 while True:
-                    antinode_1 = (antinode_1[0] - y_diff, antinode_1[1] - x_diff)
-                    if is_on_grid(antinode_1):
-                        nodes.add(antinode_1)
-                    else:
-                        break
-                while True:
-                    antinode_2 = (antinode_2[0] + y_diff, antinode_2[1] + x_diff)
-                    if is_on_grid(antinode_2):
-                        nodes.add(antinode_2)
+                    antinode = (antinode[0] - y_diff, antinode[1] - x_diff)
+                    if is_on_grid(antinode):
+                        nodes.add(antinode)
                     else:
                         break
                 # add the antennas
-                nodes.add(val_1)
-                nodes.add(val_2)
+                nodes.add(ant1)
     print(nodes)
     return len(nodes)
 
