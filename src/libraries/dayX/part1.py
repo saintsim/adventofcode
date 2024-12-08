@@ -5,5 +5,5 @@ def part1(input):
 
 
 if __name__ == '__main__':
-    with open('input', 'r') as file:
+    with open('example', 'r') as file:
         print('Result: ' + str(part1(file.read())))
