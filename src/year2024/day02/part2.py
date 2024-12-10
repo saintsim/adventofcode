@@ -4,52 +4,49 @@ SAFE = 1
 UNSAFE = 0
 
 
-def safe_check(tokens, check_count):
+def safe_check(tokens):
     if tokens[1] > tokens[0]:
         # increasing
-        for idx, line in enumerate(range(len(tokens) - 1)):
-            if check_count == 1 and idx == len(tokens)-2:
-                return SAFE
+        for idx in range(len(tokens) - 1):
             if tokens[idx+1] > tokens[idx]:
                 diff = tokens[idx+1] - tokens[idx]
                 if diff < 1 or diff > 3:
-                    if check_count > 0:
-                        return safe_check(tokens[:idx] + tokens[idx+1:], 0)
-                    else:
-                        return UNSAFE
-            else:
-                if check_count > 0:
-                    return safe_check(tokens[:idx] + tokens[idx + 1:], 0)
-                else:
                     return UNSAFE
+            else:
+                return UNSAFE
         return SAFE
     else:
         # decreasing
-        for idx, line in enumerate(range(len(tokens)-1)):
-            if check_count == 1 and idx == len(tokens)-2:
-                return SAFE
+        for idx in range(len(tokens)-1):
             if tokens[idx] > tokens[idx+1]:
                 diff = tokens[idx] - tokens[idx+1]
                 if diff < 1 or diff > 3:
-                    if check_count > 0:
-                        return safe_check(tokens[:idx] + tokens[idx+1:], 0)
-                    else:
-                        return UNSAFE
-            else:
-                # safe
-                if check_count > 0:
-                    return safe_check(tokens[:idx] + tokens[idx + 1:], 0)
-                else:
                     return UNSAFE
+            else:
+                return UNSAFE
         return SAFE
-    pass
 
 
 def part2(input):
     safe_count = 0
+    i = 0
     for line in input.split('\n'):
-        if safe_check(list(map(int, line.split())), 1) == SAFE:
+        line_list = list(map(int, line.split()))
+        is_safe = False
+        if safe_check(line_list) == SAFE:
+            print(str(line_list))
+            is_safe = True
+        else:
+            for idx in range(len(line_list)):
+                new_list = list(line_list)
+                del new_list[idx]
+                if safe_check(new_list) == SAFE:
+                    print(str(line_list))
+                    is_safe = True
+                    break
+        if is_safe:
             safe_count += 1
+        i += 1
     return safe_count
 
 
