@@ -17,6 +17,9 @@ def off_grid(maze, location):
 
 
 def get_paths(maze, start, current_number, visited):
+    visited[current_number] = start
+    if current_number == 9:
+        ALL_PATHS.append(visited)
     print('Current: ' + str(current_number) + ', location: ' + str(start))
     for direction in DIRECTIONS:
         next_spot = (start[0] + direction[0], start[1] + direction[1])
@@ -25,13 +28,7 @@ def get_paths(maze, start, current_number, visited):
         next_spot_number = maze[next_spot[0]][next_spot[1]]
         if next_spot_number is None:
             continue
-        if next_spot_number == 9:
-            # end
-            visited[9] = next_spot
-            ALL_PATHS.append(visited)
-            return
-        elif next_spot_number == current_number + 1:
-            visited[current_number+1] = next_spot
+        if next_spot_number == current_number + 1:
             get_paths(maze, next_spot, current_number+1, dict(visited))
 
 
@@ -40,7 +37,7 @@ def find_paths(maze, start_spots, end_spots):
     for start in start_spots:
         global ALL_PATHS
         ALL_PATHS = []
-        get_paths(maze, start, 0, {0: start})
+        get_paths(maze, start, 0, {})
         end_spots_seen = set()
         new_count = 0
         for paths_seen in ALL_PATHS:
@@ -69,5 +66,5 @@ def part1(input):
 
 
 if __name__ == '__main__':
-    with open('example3', 'r') as file:
+    with open('input', 'r') as file:
         print('Result: ' + str(part1(file.read())))
