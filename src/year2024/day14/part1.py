@@ -6,6 +6,8 @@ import math
 POS = 'position'
 VEL = 'velocity'
 BOARD_SIZE = (103, 101)
+
+
 # (7, 11)
 
 
@@ -18,7 +20,7 @@ def parse(input):
 
 
 def off_grid(position):
-    if position[0] < 0 or position[1] < 0 or position[0] > BOARD_SIZE[0]-1 or position[1] > BOARD_SIZE[1]-1:
+    if position[0] < 0 or position[1] < 0 or position[0] > BOARD_SIZE[0] - 1 or position[1] > BOARD_SIZE[1] - 1:
         return True
 
 
@@ -31,7 +33,7 @@ def update_position(robot):
     new_position = (robot[POS][0] + robot[VEL][0], robot[POS][1] + robot[VEL][1])
     # is off grid? if so put back on
     if off_grid(new_position):
-         new_position = get_wrapped_position(new_position)
+        new_position = get_wrapped_position(new_position)
     robot[POS] = new_position
     return robot
 
@@ -42,8 +44,8 @@ def get_score(robots):
     score_per_quad = [0, 0, 0, 0]
     for robot in robots:
         pos = robot[POS]
-        middle_y = int(BOARD_SIZE[0]/2)
-        middle_x = int(BOARD_SIZE[1]/2)
+        middle_y = int(BOARD_SIZE[0] / 2)
+        middle_x = int(BOARD_SIZE[1] / 2)
         if pos[0] == middle_y or pos[1] == middle_x:
             continue
         if pos[0] < middle_y and pos[1] < middle_x:
