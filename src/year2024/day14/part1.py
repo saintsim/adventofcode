@@ -6,8 +6,6 @@ import math
 POS = 'position'
 VEL = 'velocity'
 BOARD_SIZE = (103, 101)
-
-
 # (7, 11)
 
 
