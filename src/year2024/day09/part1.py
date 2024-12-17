@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import time
+
 def parse(input):
     disk = []
     idx = 0
@@ -15,12 +17,14 @@ def parse(input):
 
 def move_blocks(disk):
     idx = 0
+    last_back_idx = len(disk)-1
     while True:
-        if '.' not in disk or set(disk[idx:]) == {'.'}:
+        if idx > len(disk)-1 or set(disk[idx:]) == {'.'}:
             return disk
         if disk[idx] == '.':
             item_to_move = None
-            for back_element in range(len(disk)-1, -1, -1):
+            for back_element in range(last_back_idx, -1, -1):
+                last_back_idx -= 1
                 if disk[back_element] != '.':
                     item_to_move = disk.pop(back_element)
                     break
@@ -39,7 +43,10 @@ def calc_checksum(disk):
 
 def part1(input):
     disk = parse(input)
+    before_time = time.time()
     disk = move_blocks(disk)
+    after_time = time.time()
+    print('Time took:' + str(after_time-before_time))
     return calc_checksum(disk)
 
 
