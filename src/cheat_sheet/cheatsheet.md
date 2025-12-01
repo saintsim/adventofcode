@@ -83,6 +83,9 @@
     line = 'bob: jones'
     re.search(r'(\w*)', a).groups()[0]  # 'bob' , could have used match
 
+    line = 'hello (world)'
+    s1, s2 = re.match(r"(.*?)\s*\((.*?)\)", line).groups() # s1 = hello, s2 = world
+
     re.findall()  # list contaiming all matches
     re.match()    # match object (but only at BEGINNING of the string)
     re.fullmatch() # match object (matches the WHOLE string)
@@ -91,18 +94,24 @@
     re.split()    # split and return as list
     re.sub()      # RegEx find and replace
 
-    .     # any char except a newline
+    .     # any char except a newline (but only single character if no * or + after it)
     ^     # start of string
     $     # end of string
     [A-z] # match a char set
+    ?     # 0 or 1
     *     # 0 or more (i.e. optional)
     +     # 1 or more
+    *? +? ??     # e.g. .*? makes it less greedy to not take the whole sentence with this bit of the match
     {2}   # exactly 2
+    {2,3} # either 2 or 3 occurences
     \D    # string without digits
     (\d)  # capture group, capturing digits
     \w    # alpha-numerics
     \s    # white space
     \S    # string not containing white space
+    \( \) # if you want to match on brackets, they are reserved characters in Regex so need to be escaped
+
+Note- best to always use r'' or r"" around our RegEx sequence so we can correctly escape. This means we use Python's raw string notation and don't conflict between the RegEx and Python meaning of '\'
 
 -> [Python re docs](https://docs.python.org/3/library/re.html)
 
